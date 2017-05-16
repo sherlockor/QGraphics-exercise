@@ -2,6 +2,11 @@
 
 myItem::myItem()
 {
+    setToolTip("Click and drag me!");   //提示
+    setCursor(Qt::OpenHandCursor);      //改变光标
+}
+myItem::~myItem()
+{
 
 }
 
