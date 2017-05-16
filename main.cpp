@@ -3,6 +3,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsItem>
 #include <QGraphicsView>
+#include <myitem.h>
 
 int main(int argc, char *argv[])
 {
@@ -10,7 +11,7 @@ int main(int argc, char *argv[])
     //MainWindow w;
     //w.show();
     QGraphicsScene* scene = new QGraphicsScene; //场景
-    QGraphicsRectItem* item = new QGraphicsRectItem(100,100,50,50);    //矩形项
+    myItem* item = new myItem;  //自定义项
     scene->addItem(item);   //添加项目到场景
     QGraphicsView* view = new QGraphicsView;    //视图
     view->setScene(scene);  //视图关联场景
