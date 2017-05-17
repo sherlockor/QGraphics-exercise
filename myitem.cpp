@@ -59,7 +59,53 @@ void myItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     drag->exec();   //开始拖动
     setCursor(Qt::OpenHandCursor);  //改变光标
 }
+
 void myItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
+    Q_UNUSED(event);
     setCursor(Qt::OpenHandCursor);
+}
+
+RectItem::RectItem()
+{
+    setAcceptDrops(true);   //设置接受拖放
+    color = QColor(Qt::lightGray);
+}
+
+QRectF RectItem::boundingRect() const
+{
+    return QRectF(0, 0, 50, 50);
+}
+
+void RectItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
+    painter->setBrush(dragOver? color.light(130): color);   //有拖动，颜色变亮
+    painter->drawRect(0, 0, 50, 50);
+}
+
+void RectItem::dragEnterEvent(QGraphicsSceneDragDropEvent *event)
+{
+    if(event->mimeData()->hasColor())   //如果拖动颜色的数据中有颜色数据，便接收
+    {
+        event->setAccepted(true);
+        dragOver = true;
+        update();
+    }
+}
+
+void RectItem::dragLeaveEvent(QGraphicsSceneDragDropEvent *event)
+{
+    Q_UNUSED(event);
+    dragOver = false;
+    update();
+}
+
+void RectItem::dropEvent(QGraphicsSceneDragDropEvent *event)
+{
+    dragOver = false;
+    if(event->mimeData()->hasColor())
+    {
+        color = qvariant_cast<QColor>(event->mimeData()->colorData());
+        update();
+    }
 }

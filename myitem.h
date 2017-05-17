@@ -13,6 +13,25 @@
 #include <QMimeData>
 #include <QPixmap>
 #include <QWidget>
+#include <QVariant>
+
+class RectItem : public QGraphicsItem
+{
+public:
+    RectItem();
+    QRectF boundingRect() const;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+
+protected:
+    void dragEnterEvent(QGraphicsSceneDragDropEvent* event);
+    void dragLeaveEvent(QGraphicsSceneDragDropEvent* event);
+    void dropEvent(QGraphicsSceneDragDropEvent* event);
+
+private:
+    QColor color;
+    bool dragOver;  //标志是否有拖动进入
+};
+
 
 class myItem : public QGraphicsItem
 {
