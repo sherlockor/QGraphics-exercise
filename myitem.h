@@ -5,6 +5,8 @@
 #include <QRectF>
 #include <QPainter>
 #include <QCursor>
+#include <QKeyEvent>
+#include <QGraphicsSceneMouseEvent>
 
 class myItem : public QGraphicsItem
 {
@@ -14,6 +16,12 @@ public:
 
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+
+protected:
+    void keyPressEvent(QKeyEvent* event);
+
+    void mousePressEvent(QGraphicsSceneMouseEvent* event);
+
 };
 
 #endif // MYITEM_H
