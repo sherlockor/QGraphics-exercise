@@ -16,8 +16,12 @@ myItem::~myItem()
 QRectF myItem::boundingRect() const
 {
     qreal penWidth = 1;
+    /*return QRectF(0 - penWidth/2, 0 - penWidth/2,
+                  20 + penWidth, 20 + penWidth);*/
     return QRectF(0 - penWidth/2, 0 - penWidth/2,
-                  20 + penWidth, 20 + penWidth);
+                  50 + penWidth, 50 + penWidth);
+    //20=>50，图形出来就是red，我们要让方块按照本身的形状，而不是
+    //boundingRect的大小来检测碰撞，我们需要重新是心啊shape()函数
 }
 
 void myItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -60,4 +64,13 @@ void myItem::keyPressEvent(QKeyEvent *event)
 void myItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     moveBy(10, 0);
+}
+
+QPainterPath myItem::shape() const
+{
+    //现在shapehe boundingRect的大小已经不同了
+    //对于不是矩形的形状，可以利用shape()函数来返回真实形状
+    QPainterPath path;
+    path.addRect(0,0,20,20);    //图形项的真实大小
+    return path;
 }

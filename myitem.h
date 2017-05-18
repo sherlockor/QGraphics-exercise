@@ -7,6 +7,7 @@
 #include <QCursor>
 #include <QKeyEvent>
 #include <QGraphicsSceneMouseEvent>
+#include <QPainterPath>
 
 class myItem : public QGraphicsItem
 {
@@ -18,6 +19,7 @@ public:
     //绘制图形项
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
+    QPainterPath shape() const;
 protected:
     void keyPressEvent(QKeyEvent* event);
 
