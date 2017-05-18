@@ -25,6 +25,7 @@ protected:
 
     void mousePressEvent(QGraphicsSceneMouseEvent* event);
 
+    void advance(int phase);
 };
 
 #endif // MYITEM_H

@@ -5,6 +5,7 @@
 #include <QGraphicsView>
 #include <myitem.h>
 #include <QDebug>
+#include <QTimer>
 
 int main(int argc, char *argv[])
 {
@@ -21,9 +22,9 @@ int main(int argc, char *argv[])
     view->setScene(scene);  //视图关联场景
     view->show();   //显示视图
 
-    qDebug()<<item->shape();    //输出item的shape信息
-    qDebug()<<item->boundingRect(); //输出item的boundingRect信息
-
+    QTimer timer;
+    QObject::connect(&timer,SIGNAL(timeout()),scene,SLOT(advance()));
+    timer.start(1000);
 
     return a.exec();
 }
