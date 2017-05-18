@@ -14,7 +14,8 @@ public:
     myItem();
     ~myItem();
 
-    QRectF boundingRect() const;
+    QRectF boundingRect() const;    //定义item的绘制范围
+    //绘制图形项
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
 protected:

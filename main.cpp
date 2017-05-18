@@ -4,6 +4,7 @@
 #include <QGraphicsItem>
 #include <QGraphicsView>
 #include <myitem.h>
+#include <QDebug>
 
 int main(int argc, char *argv[])
 {
@@ -12,10 +13,17 @@ int main(int argc, char *argv[])
     //w.show();
     QGraphicsScene* scene = new QGraphicsScene; //场景
     myItem* item = new myItem;  //自定义项
+    QGraphicsLineItem* line = new QGraphicsLineItem(0,50,300,50); //直线
+
     scene->addItem(item);   //添加项目到场景
+    scene->addItem(line);
     QGraphicsView* view = new QGraphicsView;    //视图
     view->setScene(scene);  //视图关联场景
     view->show();   //显示视图
+
+    qDebug()<<item->shape();    //输出item的shape信息
+    qDebug()<<item->boundingRect(); //输出item的boundingRect信息
+
 
     return a.exec();
 }
