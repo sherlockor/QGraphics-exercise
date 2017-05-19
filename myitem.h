@@ -8,7 +8,15 @@
 #include <QKeyEvent>
 #include <QGraphicsSceneMouseEvent>
 #include <QPainterPath>
+#include <QGraphicsItemAnimation>
+#include <QTimeLine>
 
+/*********************************************
+ * 实现图形项的动画效果，也可以在不同的层面进行，如果只想
+ * 控制一两个图形项的动画，一般在场景或视图中实现。但是，
+ * 要是想让一个图形项类的多个对象都进行同样的动画，那么，
+ * 就可以在图形项类中实现
+ ********************************************/
 class myItem : public QGraphicsItem
 {
 public:

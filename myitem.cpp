@@ -7,6 +7,14 @@ myItem::myItem()
 
     setFlag(QGraphicsItem::ItemIsFocusable);    //图形项可以获得焦点
     setFlag(QGraphicsItem::ItemIsMovable);      //图形项是可移动的，可以代替鼠标事件拖动
+    QGraphicsItemAnimation* anim = new QGraphicsItemAnimation;  //新建动画类对象
+    anim->setItem(this);//讲该图形项加入动画对象中
+    QTimeLine* timeLine = new QTimeLine(1000);  //新建长为1秒的时间线
+    timeLine->setLoopCount(0);  //动画循环次数为0，表示无线循环
+    anim->setTimeLine(timeLine);//将时间线加入动画类对象中
+    anim->setRotationAt(0.5,180);//在动画执行一半的时候,图形项旋转180度
+    anim->setRotationAt(1,360); //动画执行完时，图形项旋转360度
+    timeLine->start();//开始动画
 }
 myItem::~myItem()
 {
