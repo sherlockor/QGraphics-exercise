@@ -24,3 +24,16 @@ void myItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
     painter->setBrush(Qt::red);
     painter->drawRect(0, 0, 20, 20);
 }
+
+void myItem::moveTo()
+{
+    setPos(20, 20);
+}
+
+void myItem::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
+{
+    QMenu menu;
+    QAction* action = menu.addAction("moveTo(0,0)");
+    connect(action,SIGNAL(triggered(bool)),this,SLOT(moveTo()));
+    menu.exec(event->screenPos());  //在按下鼠标左键的地方弹出菜单
+}
